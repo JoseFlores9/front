@@ -1,9 +1,17 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
+import rat from "../../assets/images/rat.png";
 
 const Header = () => {
+  let navigate = useNavigate();
   return (
-    <div className="py-4 pl-8 bg-white rounded-t-lg">
-      <h1 className=" text-xl text-black">HealthyRat</h1>
+    <div className="py-4 pl-8 bg-secondary flex items-center gap-2">
+      <img src={rat} alt="rat" className="w-12 h-12" />
+      <h1
+        onClick={() => navigate("/")}
+        className=" text-xl text-fifth cursor-pointer"
+      >
+        HealthyRat
+      </h1>
     </div>
   );
 };
