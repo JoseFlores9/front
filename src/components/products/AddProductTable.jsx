@@ -1,7 +1,7 @@
 import { Modal } from "@mui/material";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import Search from "../../assets/icons/Search";
+import axios from "../../api/axios";
 
 const AddProductTable = (props) => {
   const { open, handleClose, setProducts, products } = props;
