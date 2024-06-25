@@ -1,13 +1,13 @@
 import { Modal } from "@mui/material";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import axios from "../api/axios";
 
 const AddProductTable = (props) => {
   const { open, handleClose } = props;
   const [productsList, setProductsList] = useState([]);
   const [showProducts, setShowProducts] = useState([]);
   const getProducts = async () => {
-    const response = await axios.get("http://localhost:3000/products");
+    const response = await axios.get("/products");
     setProductsList(response.data);
     setShowProducts(response.data);
   };
