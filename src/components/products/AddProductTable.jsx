@@ -11,7 +11,7 @@ const AddProductTable = (props) => {
   let productsIds = products.map((product) => product._id);
 
   const getProducts = async () => {
-    const response = await axios.get("http://localhost:3000/products");
+    const response = await axios.get("/products");
     setProductsList(response.data);
     setShowProducts(response.data);
   };
