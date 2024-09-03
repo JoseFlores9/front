@@ -4,7 +4,8 @@ import Plus from "../../assets/icons/Plus";
 import FactLabel from "./FactLabel";
 
 const ProductsTable = (props) => {
-  const { products, nutritionalMax, handleOpen, setProducts } = props;
+  const { products, nutritionalMax, handleOpen, setProducts, portionMax } =
+    props;
   const nutritionalFacts = [
     "Energía (kCal)",
     "Proteínas (g)",
@@ -118,7 +119,12 @@ const ProductsTable = (props) => {
                             <FactLabel
                               value={aux}
                               factType={element}
-                              type={compare(aux, nutritionalMax[element])}
+                              type={compare(
+                                aux,
+                                index === 0
+                                  ? nutritionalMax[element]
+                                  : portionMax[element]
+                              )}
                             />
                           </div>
                         )

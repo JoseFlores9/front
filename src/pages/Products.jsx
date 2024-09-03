@@ -8,6 +8,7 @@ const Products = () => {
   const [searchParams] = useSearchParams();
   const [products, setProducts] = useState([]);
   const [nutritionalMax, setNutritionalMax] = useState({});
+  const [portionMax, setPortionMax] = useState({});
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -60,7 +61,22 @@ const Products = () => {
       });
       setNutritionalMax(auxMax);
     };
+    const getMaxPortion = () => {
+      let auxMax = {};
+      nutritionalFacts.map((fact) => {
+        let auxPortion = products.map((product) => {
+          let auxF = product.nutritionalFacts[fact].split("/");
+          if (isNaN(auxF[1])) {
+            return 0;
+          }
+          return Number(auxF[1]);
+        });
+        auxMax[fact] = Math.max(...auxPortion);
+      });
+      setPortionMax(auxMax);
+    };
     getMaxFacts();
+    getMaxPortion();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [products]);
   return (
@@ -78,6 +94,7 @@ const Products = () => {
         <ProductsTable
           products={products}
           nutritionalMax={nutritionalMax}
+          portionMax={portionMax}
           handleOpen={handleOpen}
           setProducts={setProducts}
         />
