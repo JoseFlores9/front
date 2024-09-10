@@ -4,8 +4,16 @@ import Plus from "../../assets/icons/Plus";
 import FactLabel from "./FactLabel";
 
 const ProductsTable = (props) => {
-  const { products, nutritionalMax, handleOpen, setProducts, portionMax } =
-    props;
+  const {
+    products,
+    nutritionalMax,
+    handleOpen,
+    setProducts,
+    portionMax,
+    portionMin,
+    nutritionalMin,
+  } = props;
+
   const nutritionalFacts = [
     "Energía (kCal)",
     "Proteínas (g)",
@@ -44,12 +52,17 @@ const ProductsTable = (props) => {
     "Sodio (mg)":
       "El sodio es un elemento que el cuerpo necesita para funcionar correctamente. La sal contiene sodio. El cuerpo utiliza el sodio para controlar la presión arterial y el volumen sanguíneo. El cuerpo también necesita sodio para que los músculos y los nervios funcionen apropiadamente.",
   };
-  const compare = (value, base) => {
+  const compare = (value, base, min) => {
     const aux = Number(value);
     if (aux >= base) {
       return "high";
+    } else {
+      if (aux <= min) {
+        return "low";
+      } else {
+        return "default";
+      }
     }
-    return "low";
   };
 
   const handleDeleteProduct = (index) => {
@@ -57,6 +70,8 @@ const ProductsTable = (props) => {
     aux.splice(index, 1);
     setProducts(aux);
   };
+
+  console.log(nutritionalMax);
   return (
     <div className=" bg-fifth w-max rounded-lg mt-8 p-2 border-1 border-secondary flex items-center gap-4">
       <table className="border-separate border-spacing-y-2  rounded-lg ">
@@ -123,7 +138,10 @@ const ProductsTable = (props) => {
                                 aux,
                                 index === 0
                                   ? nutritionalMax[element]
-                                  : portionMax[element]
+                                  : portionMax[element],
+                                index === 0
+                                  ? nutritionalMin[element]
+                                  : portionMin[element]
                               )}
                             />
                           </div>

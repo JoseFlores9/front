@@ -1,4 +1,5 @@
 import Arrow from "../../assets/icons/Arrow";
+import Equal from "../../assets/icons/Equal";
 
 const FactLabel = (props) => {
   const { factType, value, type } = props;
@@ -24,12 +25,14 @@ const FactLabel = (props) => {
       } else {
         return "text-red-alert";
       }
-    } else {
+    } else if (type === "low") {
       if (factTypes[factType]) {
         return "text-red-alert";
       } else {
         return "text-green-principal";
       }
+    } else {
+      return "text-gray";
     }
   };
   const getColor = () => {
@@ -39,12 +42,14 @@ const FactLabel = (props) => {
       } else {
         return "bg-baby-pink";
       }
-    } else {
+    } else if (type === "low") {
       if (factTypes[factType]) {
         return "bg-baby-pink";
       } else {
         return "bg-light-green";
       }
+    } else {
+      return "bg-light-gray";
     }
   };
 
@@ -55,12 +60,14 @@ const FactLabel = (props) => {
       } else {
         return "border-red-alert";
       }
-    } else {
+    } else if (type === "low") {
       if (factTypes[factType]) {
         return "border-red-alert";
       } else {
         return "border-green-principal";
       }
+    } else {
+      return "border-gray";
     }
   };
   return (
@@ -68,9 +75,15 @@ const FactLabel = (props) => {
       className={`flex items-center justify-center gap-2 ${getColor()} border-1 ${getBorderColor()} rounded mx-2`}
     >
       <span className={``}>{value}</span>
-      <Arrow
-        styles={`w-4 h-4 ${type === "high" ? "" : "transform rotate-180"} ${getTextColor()}`}
-      />
+      {type === "default" ? (
+        <Equal
+          styles={`w-4 h-4 ${type === "high" ? "" : "transform rotate-180"} ${getTextColor()}`}
+        />
+      ) : (
+        <Arrow
+          styles={`w-4 h-4 ${type === "high" ? "" : "transform rotate-180"} ${getTextColor()}`}
+        />
+      )}
     </div>
   );
 };

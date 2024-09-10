@@ -9,6 +9,8 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [nutritionalMax, setNutritionalMax] = useState({});
   const [portionMax, setPortionMax] = useState({});
+  const [nutritionalMin, setNutritionalMin] = useState({});
+  const [portionMin, setPortionMin] = useState({});
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -49,6 +51,7 @@ const Products = () => {
   useEffect(() => {
     const getMaxFacts = () => {
       let auxMax = {};
+      let auxMin = {};
       nutritionalFacts.map((fact) => {
         let auxPortion = products.map((product) => {
           let auxF = product.nutritionalFacts[fact].split("/");
@@ -58,11 +61,14 @@ const Products = () => {
           return Number(auxF[0]);
         });
         auxMax[fact] = Math.max(...auxPortion);
+        auxMin[fact] = Math.min(...auxPortion);
       });
       setNutritionalMax(auxMax);
+      setNutritionalMin(auxMin);
     };
     const getMaxPortion = () => {
       let auxMax = {};
+      let auxMin = {};
       nutritionalFacts.map((fact) => {
         let auxPortion = products.map((product) => {
           let auxF = product.nutritionalFacts[fact].split("/");
@@ -71,9 +77,11 @@ const Products = () => {
           }
           return Number(auxF[1]);
         });
+        auxMin[fact] = Math.min(...auxPortion);
         auxMax[fact] = Math.max(...auxPortion);
       });
       setPortionMax(auxMax);
+      setPortionMin(auxMin);
     };
     getMaxFacts();
     getMaxPortion();
@@ -95,6 +103,8 @@ const Products = () => {
           products={products}
           nutritionalMax={nutritionalMax}
           portionMax={portionMax}
+          nutritionalMin={nutritionalMin}
+          portionMin={portionMin}
           handleOpen={handleOpen}
           setProducts={setProducts}
         />

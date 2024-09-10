@@ -18,7 +18,9 @@ export default {
         "secondary": "#0c3c01",
         "third":"#5b6d49",
         "fourth":"#a2ac82",
-        "fifth":"#f1f2ed"
+        "fifth":"#f1f2ed",
+        "light-gray":"#D3D3D3",
+        "gray":"#989898"
       },
       borderWidth: {
         '1': '1px'
