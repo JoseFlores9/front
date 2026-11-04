@@ -6,21 +6,27 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['"Plus Jakarta Sans"', "system-ui", "sans-serif"],
+      },
       backgroundImage: {
         'fruits': "url('/src/assets/images/back.png')",
       },
       colors:{
-        "green-principal": "#00C94F",
-        "light-green": "#E6FAED",
-        "baby-pink": "#FDEAEB",
-        "red-alert": "#EB2D37",
-        "principal": "#2e2d1d",
-        "secondary": "#0c3c01",
-        "third":"#5b6d49",
-        "fourth":"#a2ac82",
-        "fifth":"#f1f2ed",
-        "light-gray":"#D3D3D3",
-        "gray":"#989898"
+        "green-principal": "#15803D",
+        "light-green": "#E7F7EC",
+        "baby-pink": "#FDECEC",
+        "red-alert": "#DC2626",
+        "principal": "#13261C",
+        "secondary": "#178A45",
+        "third":"#3F6B50",
+        "fourth":"#CFE6D3",
+        "fifth":"#F8F6EF",
+        "accent": "#FF8A3D",
+        "accent-dark": "#F06B1A",
+        "apple": "#8BD43F",
+        "light-gray":"#DCE3DD",
+        "gray":"#6B776F"
       },
       borderWidth: {
         '1': '1px'
@@ -29,4 +35,3 @@ export default {
   },
   plugins: [],
 }
-
